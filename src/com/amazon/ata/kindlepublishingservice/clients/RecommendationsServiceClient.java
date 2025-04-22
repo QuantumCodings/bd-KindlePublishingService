@@ -37,7 +37,7 @@ public class RecommendationsServiceClient {
         final double startTime = System.currentTimeMillis();
 
         List<BookRecommendation> recommendations = recommendationsService.getBookRecommendations(
-            BookGenre.valueOf(genre.name()));
+                BookGenre.valueOf(genre.name()));
 
         final double endTime = System.currentTimeMillis() - startTime;
 

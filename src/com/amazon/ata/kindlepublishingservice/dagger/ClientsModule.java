@@ -15,7 +15,7 @@ public class ClientsModule {
     @Singleton
     @Provides
     public RecommendationsServiceClient provideRecommendationsServiceClient(
-        RecommendationsService recommendationsService) {
+            RecommendationsService recommendationsService) {
         return new RecommendationsServiceClient(recommendationsService);
     }
 }

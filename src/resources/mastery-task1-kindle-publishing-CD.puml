@@ -1,1 +1,57 @@
-PARTICIPANTS: use this file for creating the class diagram in mastery task 01
+@startuml
+
+class CatalogItemVersion {
+    @DynamoDBHashKey bookId : String
+    @DynamoDBRangeKey version : int
+    inactive : boolean
+    author : String
+    text : String
+    genre : BookGenre
+}
+
+class PublishingStatusItem {
+    @DynamoDBHashKey publishingRecordId : String
+    @DynamoDBRangeKey status : PublishingRecordStatus
+    statusMessage : String
+    bookId : String
+}
+
+class BookNotFoundException
+
+class CatalogDao {
+    dynamoDbMapper : DynamoDBMapper
+    +getBookFromCatalog(bookId: String) : CatalogItemVersion
+    +removeBookFromCatalog(bookId: String)
+}
+
+class PublishingStatusDao {
+    dynamoDbMapper : DynamoDBMapper
+    +setPublishingStatus(publishingRecordId: String, status: PublishingRecordStatus, bookId: String) : PublishingStatusItem
+}
+
+class RecommendationsServiceClient {
+    +getRecommendations(bookId: String) : List<Recommendation>
+}
+
+class GetBookActivity {
+    +execute(GetBookRequest) : GetBookResponse
+}
+
+class RemoveBookFromCatalogActivity {
+    +execute(RemoveBookFromCatalogRequest) : RemoveBookFromCatalogResponse
+}
+
+class SubmitBookForPublishingActivity {
+    +execute(SubmitBookForPublishingRequest) : SubmitBookForPublishingResponse
+}
+
+GetBookActivity --> CatalogDao
+GetBookActivity --> RecommendationsServiceClient
+RemoveBookFromCatalogActivity --> CatalogDao
+SubmitBookForPublishingActivity --> PublishingStatusDao
+SubmitBookForPublishingActivity --> CatalogDao
+CatalogDao --> CatalogItemVersion
+CatalogDao --> BookNotFoundException
+PublishingStatusDao --> PublishingStatusItem
+
+@enduml

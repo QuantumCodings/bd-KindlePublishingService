@@ -18,12 +18,12 @@ public class CatalogItemConverter {
      */
     public static Book toBook(CatalogItemVersion catalogItem) {
         return Book.builder()
-            .withBookId(catalogItem.getBookId())
-            .withVersion(catalogItem.getVersion())
-            .withAuthor(catalogItem.getAuthor())
-            .withTitle(catalogItem.getTitle())
-            .withText(catalogItem.getText())
-            .withGenre(catalogItem.getGenre().name())
-            .build();
+                .withBookId(catalogItem.getBookId())
+                .withVersion(catalogItem.getVersion())
+                .withAuthor(catalogItem.getAuthor())
+                .withTitle(catalogItem.getTitle())
+                .withText(catalogItem.getText())
+                .withGenre(catalogItem.getGenre().name())
+                .build();
     }
 }

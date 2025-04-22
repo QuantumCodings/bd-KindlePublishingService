@@ -24,13 +24,13 @@ public class BookPublishRequestConverter {
         final String publishingRecordId = KindlePublishingUtils.generatePublishingRecordId();
 
         return BookPublishRequest.builder()
-            .withPublishingRecordId(publishingRecordId)
-            .withText(request.getText())
-            .withTitle(request.getTitle())
-            .withBookId(request.getBookId())
-            .withGenre(BookGenre.valueOf(request.getGenre()))
-            .withAuthor(request.getAuthor())
-            .build();
+                .withPublishingRecordId(publishingRecordId)
+                .withText(request.getText())
+                .withTitle(request.getTitle())
+                .withBookId(request.getBookId())
+                .withGenre(BookGenre.valueOf(request.getGenre()))
+                .withAuthor(request.getAuthor())
+                .build();
     }
 
 }
